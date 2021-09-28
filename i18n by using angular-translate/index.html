@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link data-require="bootstrap@*" data-semver="3.2.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+  <script data-require="bootstrap@*" data-semver="3.2.0" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.5.2/angular-translate.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="i18nApp">
+  <div class="container" ng-controller="NavCtrl">
+    <div class="header">
+      <ul class="nav nav-pills pull-right">
+        <li class="navbar-btn btn btn-default btn-info" ng-repeat="item in items" ng-href="item.url">{{item.text | translate}}
+        </li>
+      </ul>
+      <h3 class="text-muted">{{appTitle | translate}}</h3>
+      <button class="btn btn-default" ng-click="toggleLang('tr')">
+        <img src="http://files.softicons.com/download/internet-cons/flag-iso-icons-by-icondrawer/png/24/Turkey.png" width="24" height="24" />Türkçe</button>
+      <button class="btn btn-default" ng-click="toggleLang('en')">
+        <img src="http://english.fit95.com/_/rsrc/1264758413501/config/app/images/United-Kingdo-icon2.png" width="24" height="24" />English</button>
+    </div>
+    
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        {{chooseLang | translate}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation" ng-repeat="languageOption in languageOptions">
+          <a role="menuitem" tabindex="-1" ng-click="toggleLang(languageOption.lang)">
+            <img ng-src="{{languageOption.icon}}" width="16" height="16" />{{languageOption.text | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
