@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Drag and drop test</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" data-semver="3.0.0" data-require="bootstrap-css@*" />
+    <link rel="stylesheet" href="dnd.css" />	
+  </head>
+
+  <body>
+    <!-- create new angularJS application -->
+    <div ng-app="dndApp">
+      <h1>JQuery</h1>
+      <p>This is a test page created to test the useability of JQuery in combination with AngularJS.                                        <br />
+
+
+
+
+ By default JQlite is included. This can be overwritten to use full-blown JQuery library's as in the example page.</p>
+      <p>For styling reasons the Twitter Bootstrap CSS library has been included.</p>
+      <!-- DND example -->
+      <hr />
+      <h2>
+        <small>DND (drag-and-drop)</small>
+      </h2>
+      <hr />
+      <p>Box A als C can be dragged across the entire page. Box B is only able to recieve draggable boxes and C can be dragged and dropped.                                        <br />
+
+
+
+
+When you hover a draggable box over a droppable one the color of the box will change.</p>
+      <!-- use direct attributes -->
+      <div class="content">
+        <div draggable="" class="box">
+          <p>
+            <b>[A]</b>
+
+
+
+
+ draggable</p>
+        </div>
+        <div droppable="" class="box">
+          <p>
+            <b>[B]</b>
+
+
+
+
+ droppable</p>
+        </div>
+        <div droppable="" draggable="" class="box">
+          <p>
+            <b>[C]</b>
+
+
+
+
+ Beide</p>
+        </div>
+      </div>
+      <!-- Datepicker example -->
+      <hr />
+      <h2>
+        <small>Date picker</small>
+      </h2>
+      <hr />
+      <p>uses the JQuery Datepicker in combination with the AngularJS                                         <code>two-way databinding</code>
+
+
+
+
+ model.</p>
+      <!-- Set up a controller to bind the model to the view for two-way databinding -->
+      <div ng-controller="DateCtrl" class="content">
+        <form role="form">
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" placeholder="John Doe" ng-model="name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Date:</label>
+            <input type="date" datepicker="" placeholder="dd-mm-yyyy" ng-model="date" class="form-control" />
+          </div>
+        </form>
+        <!-- display -->
+        <p>Name:                                                   <span style="color:#0B6DDE">{{name}}</span>
+          <br />
+
+
+
+
+Date:                                                   <span style="color:#0B6DDE">{{date}}</span>
+        </p>
+      </div>
+      <!-- JQueryUI menu example -->
+      <hr />
+      <h2>
+        <small>Menu</small>
+      </h2>
+      <hr />
+      <p>Used an                                         <code>attribute directive</code>
+
+
+
+
+ to load the JQueryUI menu using:                                         <code></code>
+      </p>
+      <ul menu=""></ul>
+      <p></p>
+      <div class="content">
+        <!-- Use a directive attribute to load the JQuerUI "menu" -->
+        <ul menu="">
+          <li>
+            <a href="#">
+              <span class="ui-icon ui-icon-disk"></span>
+
+
+
+
+Save</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="ui-icon ui-icon-zoomin"></span>
+
+
+
+
+Zoom In</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="ui-icon ui-icon-zoomout"></span>
+
+
+
+
+Zoom Out</a>
+          </li>
+          <li class="ui-state-disabled">
+            <a href="#">
+              <span class="ui-icon ui-icon-print"></span>
+
+
+
+
+Print...</a>
+          </li>
+          <li>
+            <a href="#">Playback</a>
+            <ul>
+              <li>
+                <a href="#">
+                  <span class="ui-icon ui-icon-seek-start"></span>
+
+
+
+
+Prev</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="ui-icon ui-icon-stop"></span>
+
+
+
+
+Stop</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="ui-icon ui-icon-play"></span>
+
+
+
+
+Play</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="ui-icon ui-icon-seek-end"></span>
+
+
+
+
+Next</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- Progress bar example -->
+      <hr />
+      <h2>
+        <small>Progress bar</small>
+      </h2>
+      <hr />
+      <p>A simple and small progress bar using JQuery using the AngularJS                                         <code>controllers</code>
+
+
+
+
+.</p>
+      <!-- Create a controller to determine the progress -->
+      <div ng-controller="ProgBarCtrl" class="content">
+        <div>
+          <div id="progressbar">
+            <div class="progress-label">
+              <p>Loading...</p>
+            </div>
+          </div>
+          <input type="button" ng-click="more()" value="Increase bar" class="btn btn-primary" />
+          <input type="button" ng-click="less()" value="Decrease bar" class="btn btn-primary" />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Load external scripts -->
+    <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.0/angular.min.js" data-semver="1.2.0" data-require="angular.js@*"></script>
+    <script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+    
+    <!-- Load drag and drop AngularJS application -->
+    <script src="dnd.js"></script>    
+  </body>
+
+</html>
