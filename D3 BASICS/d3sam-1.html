@@ -1,0 +1,39 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="utf-8">  
+<script src="https://d3js.org/d3.v4.min.js"></script>  
+<style>  
+body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }  
+</style>  
+</head>  
+  
+<body>  
+<svg width="960" height="500"></svg>  
+<script>  
+var arc = d3.arc()  
+.innerRadius(100)  
+.outerRadius(240)  
+.cornerRadius(15)  
+  
+var svg = d3.select("svg"),  
+width = +svg.attr("width"),  
+height = +svg.attr("height"),  
+g = svg.append("g")  
+.attr("transform", "translate(" + width / 2 + "," + height / 2 +")")  
+      
+var data = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];  
+var arcs = d3.pie()(data);  
+      
+console.log("arcs: ", arc(arcs[0]))  
+var background = g.selectAll("path")  
+.data(arcs)  
+.enter()  
+.append("path")  
+.style("fill", function(d,i){  
+return d3.color("hsl(120, 50%, " + d.value + "%)");  
+})  
+.attr("d", arc)  
+</script>  
+</body>  
+</html>  
