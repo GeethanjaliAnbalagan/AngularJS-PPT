@@ -1,0 +1,10 @@
+svg circle {
+  fill: steelblue;
+	stroke: #333;
+}
+svg {
+	border: 1px solid #ccc;
+}
+.model-output {
+  font-family: monospace;
+}

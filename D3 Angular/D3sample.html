@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app='d3Demo'>
+
+<head>
+  <meta charset='utf-8' />
+	<title>Angular-d3 Demo</title>
+	<link rel='stylesheet' href='d3demo.css' />
+	<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js'></script>
+	<script src='http://d3js.org/d3.v3.min.js'></script>
+	<script src='app.js'></script>
+</head>
+<body ng-controller='d3Ctrl'>
+  <div>drag the dots</div>
+	<viz id='viz' width='{{viewSize.width}}' height='{{viewSize.height}}'></viz>
+  <div>
+    <button ng-click='addDot()'>add dot</button>
+    <button ng-click='removeDot()'>remove dot</button>
+  </div>
+	
+	<div class='model-output' ng-repeat='item in model'>model[{{$index}}]: {{item}}</div>
+
+<script>
+var dotDrag = d3.behavior.drag()
+	.on('drag', function(d,i) {
+	var radius = d.r;
+	var x = Math.max(radius, Math.min(300 - radius, d3.event.x));
+	var y = Math.max(radius, Math.min(300 - radius, d3.event.y));
+  //instead of setting the position of the dot directly,
+  //we'll update the model
+  var scope = angular.element(this).scope();
+	scope.setPosition(i, x, y);
+});
+
+function updateViz(incomingData) {
+	var dots = d3.select('#viz').selectAll('.dot')
+		.data(incomingData);
+
+	dots.attr('cx', function(d){return d.cx})
+		.attr('cy', function(d){return d.cy})
+		.attr('r', function(d){return d.r})
+
+	dots.enter().append('svg:circle')
+		.attr('class', 'dot')
+		.attr('cx', function(d){return d.cx})
+		.attr('cy', function(d){return d.cy})
+		.attr('r', function(d){return d.r})
+    .on('dblclick', function(d,i){
+      var scope = angular.element(this).scope();
+      scope.dblclicked(i);
+    })
+		.call(dotDrag);
+
+	dots.exit().remove();
+}
+</script>
+</body>
+  
+</html>
